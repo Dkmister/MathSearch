@@ -1,2 +1,2 @@
-Este diretÛrio diz a respeito da criaÁ„o de um programa que classifica dados e organiza a partir de um arquivo csv que ser· transformado em bin·rio para leitura 
-e depois indexaÁ„o atravÈs de arquivos heaps com arvores B/B++ e Patricia.
+Este diret√≥rio diz a respeito da cria√ß√£o de um programa que classifica dados e organiza a partir de um arquivo csv que ser√° transformado em bin√°rio para leitura 
+e depois indexa√ß√£o atrav√©s de arquivos sequencias com arvores B/B++ e Patricia.
