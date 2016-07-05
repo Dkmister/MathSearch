@@ -47,3 +47,35 @@ class NodeTrie(object):
             else:
                 return [False, None]
         return [None, "code invalid"] # se nao for 0 ou 1, ta errado
+################################
+# AddCodeBin => adiciona codigo caso ele nao exista
+#
+###############################
+
+    def AddCodeBin(self, code, word, offset):
+        if code[0] == '0':
+            if self.children_l != None:
+                if len(code[1:]) > 0:
+                    return self.children_l.AddCodeBin(code[1:], word, offset)
+            elif len(code[1:]) > 0:
+                self.children_l = NodeTrie(code[0], offsets=[])
+                self.children_l.AddCodeBin(code[1:] , word, offset)
+            else:
+                self.children_l = NodeTrie(code[0], offsets=[])
+                self.children_l.offsets.append(offset)
+                self.children_l.rest_word = word
+        elif code[0] == '1':
+            if self.children_r != None:
+                if len(code[1:]) > 0:
+                    return self.children_r.AddCodeBin(code[1:],word,offset)
+            elif len(code[1:]) > 0:
+                self.children_r = NodeTrie(code[0], offsets=[])
+                self.children_r.AddCodeBin(code[1:],word,offset)
+            else:
+                self.children_r = NodeTrie(code[0], offsets=[])
+                self.children_r.offsets.append(offset)
+                self.children_r.rest_word                 
+##################################
+
+        
+
