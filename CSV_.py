@@ -85,9 +85,7 @@ class NodeTrie(object):
         # Para isso ele transforma em inteiro e depois em bits (str)
         hash_w_bin = hash_w_bin[2:]
         # Faz a procura se ja existe e offset nao ta na lista de offsets
-        # Se ja tem e offset ta, 
-        #
-        #
+        # Se ja tem e offset ta,coloca novo offset na lista de offsets 
         node = self.search(hash_w_bin)
         if node[0]:
             if offset not in node[1].offsets:
@@ -95,3 +93,17 @@ class NodeTrie(object):
         else:
             self.AddCodeBin(hash_w_bin, word, offset)
 
+#########################################
+"""
+Classe com registro do arquivo, link, video e offset
+"""
+#########################################
+class Register(object):
+    def __init__(self,offset=0,info=[]):
+        self.offset = offset 
+        self.link = info[0]
+        self.namevideo = info[1]
+
+################################
+    def __repr__(self):
+        return "%s\t%s\t" % (str(self.namevideo)) , (str(self.link))
