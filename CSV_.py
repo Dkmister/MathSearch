@@ -77,5 +77,21 @@ class NodeTrie(object):
                 self.children_r.rest_word                 
 ##################################
 
+
+    def AddNodeWord(self,word,offset):
         
+        hash_w = hashlib.md5(word.encode()) # UTF-8 necessita de encode antes
+        hash_w_bin = bin(int(hash_w.hexdigest(),16)) # Deixa codigo em hexa
+        # Para isso ele transforma em inteiro e depois em bits (str)
+        hash_w_bin = hash_w_bin[2:]
+        # Faz a procura se ja existe e offset nao ta na lista de offsets
+        # Se ja tem e offset ta, 
+        #
+        #
+        node = self.search(hash_w_bin)
+        if node[0]:
+            if offset not in node[1].offsets:
+                node[1].offsets.append(offset)
+        else:
+            self.AddCodeBin(hash_w_bin, word, offset)
 
