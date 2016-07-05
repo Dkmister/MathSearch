@@ -107,3 +107,17 @@ class Register(object):
 ################################
     def __repr__(self):
         return "%s\t%s\t" % (str(self.namevideo)) , (str(self.link))
+################################
+# Funcoes auxiliares
+################################
+# normalize(titulo)=>texto em minusculo
+#   pega o titulo do video e coloca em minusculo
+################################
+
+def normalize(title):
+    aux_title = title.lower()
+
+    word_list = re.sub("[\W]"," ",aux_title).split()
+
+    return word_list
+###############################
