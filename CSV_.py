@@ -143,3 +143,36 @@ def intercession(listas):
         return result
 
 #############################################
+# make_index_files => monta os arquivos indexados, que armazenam indices em TRIE
+#
+#############################################
+def make_index_files(lista_de_registros, handler):
+    trie_words = NodeTrie(None,offsets=[])
+    trie_links = NodeTrie(None,offsets=[])
+    trie_namevideos = NodeTrie(None,offsets=[])
+
+    f_words = open(handler + "data_word_index.bin", 'wb')
+    f_links = open(handler + "data_links_index.bin",'wb')
+    f_namevideos = open(handler + "data_name_videos_index.bin",'wb')
+
+    for registro in lista_registros:
+
+        video_name = registro.namevideo # pega titulo do video
+        video_n = normalize(video_name)
+        for word in video_n:# para cada palavra, insere na trie e da um novo offset
+            trie_words.AddNodeWord(word, registro.offset)
+
+        trie_namevideos.AddNodeWord(registro.namevideo.lower(),registro.offset)
+        trie_links.AddNodeWord(str(registro.link),registro.offset)
+
+    pickle.dump(trie_words,f_words,pickle.HIGHEST_PROTOCOL)
+    pickle.dump(trie_namevideos,f_namevideos,pickle.HIGHEST_PROTOCOL)
+    pickle.dump(trie_links,f_links,pickle.HIGHEST_PROTOCOL)
+
+    f_words.close()
+    f_links.close()
+    f_namevideos.close()
+
+###########################################################################
+
+        
