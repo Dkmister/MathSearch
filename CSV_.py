@@ -121,3 +121,25 @@ def normalize(title):
 
     return word_list
 ###############################
+#
+#
+###############################
+
+def intercession(listas):
+    result = []
+    a = listas[0]
+    if len(listas[1:]) > 0:
+        b = listas[1]
+        for obj in a:
+            if obj in b:
+                result.append(obj)
+        if len(listas[2:]) > 0:
+            c = listas[2:]
+            c.append(result)
+            return intercession(c)
+        else:
+            return result
+    else:
+        return result
+
+#############################################
