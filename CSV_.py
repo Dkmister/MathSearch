@@ -209,4 +209,25 @@ def list_video(word, tree, name_file):
     else:
         return None
 ##########################################################################
-    
+def quick_sort(lista_registro):
+    less = []
+    equal = []
+    greater = []
+
+    if len(lista_registro) > 1:
+        pivot = lista_registro[0]
+        for x in lista_registro:
+            if x < pivot:
+                less.append(x)
+            if x == pivot:
+                equal.append(x)
+            if x > pivot:
+                greater.append(x)
+
+        return quick_sort(less)+equal+sort(greater)
+
+    else:
+        return lista_registro
+
+###############################################################
+
