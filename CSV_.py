@@ -175,4 +175,38 @@ def make_index_files(lista_de_registros, handler):
 
 ###########################################################################
 
-        
+def search_video(offset, name_file):
+
+    handler = open(name_file + 'Data.bin','rb')
+
+    for i in range(offset):
+        pickle.load(handler)
+
+    r = pickle.load(handler)
+
+    handler.close()
+
+    return r
+
+
+##########################################################################
+
+def list_video(word, tree, name_file):
+    n = []
+    videos = []
+
+
+    hash_w = hashlib.md5(word.encode())
+    hash_w_bin = bin(int(hash_w.hexdigest(),16))
+    hash_w_bin = hash_w_bin[2:]
+
+    n = tree.search(hash_w_bin)
+
+    if n[0]:
+        for i in n[1].offsets:
+            videos.append(search_video(i,name_file))
+        return videos
+    else:
+        return None
+##########################################################################
+    
