@@ -230,4 +230,14 @@ def quick_sort(lista_registro):
         return lista_registro
 
 ###############################################################
+def print_list(lista_registros):
+    if(lista_registros == None):
+        print "\nRegistro nao encontrado.\n"
+    else:
+        if(len(lista_registros)> 15 ):
+            sorted(lista_registros, key = lambda Register: Register.namevideo.lower())
+        else:
+            quick_sort(lista_registros)
 
+    for registro in lista_registros:
+        print "%s\n" %(registro.namevideo)
