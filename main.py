@@ -58,3 +58,13 @@ def video_name(name_archive, word, exit):
     f.close()
 
 #####################################################
+def verify_entry(nomedaentrada):
+    try:
+        entrada = open(nomedaentrada+"data_name_videos_index.bin",'wb')
+        print("\nArquivo ja processado anteriormente\n")
+        entrada.close()
+        return True
+    except:
+        print("\nArquivo novo.\nVamos processar o arquivo pela primeira vez.\nAguarde\n")
+        return False
+#####################################################
