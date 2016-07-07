@@ -68,3 +68,27 @@ def verify_entry(nomedaentrada):
         print("\nArquivo novo.\nVamos processar o arquivo pela primeira vez.\nAguarde\n")
         return False
 #####################################################
+def test():
+    try:
+        handler = input("Nome do arquivo:")
+        f = open(handler + ".csv",'r',errors='ignore', encoding ="UTF-8")
+        return [f,handler]
+    except:
+        print("Arquivo inexistente.\n")
+        return test()
+
+####################################################
+# Main
+####################################################
+Registers = []
+files = []
+
+k = test()
+
+f = k[0]
+
+handler = k[1]
+
+del k 
+# processamento de arquivo 
+offset = 0
