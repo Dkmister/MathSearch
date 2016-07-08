@@ -35,7 +35,10 @@ def switch(menu, handler,exit):
         
     return 0
 #####################################################
-
+def listar_videos(Registros):
+    for i in Registros:
+        r = i.__repr__()
+        exit.write(r + "\n\n")
 
 #####################################################
 def video_name(name_archive, word, exit):
