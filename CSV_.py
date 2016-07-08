@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import csv
 import re 
 import hashlib
@@ -232,12 +233,12 @@ def quick_sort(lista_registro):
 ###############################################################
 def print_list(lista_registros):
     if(lista_registros == None):
-        print "\nRegistro nao encontrado.\n"
+        print ("\nRegistro nao encontrado.\n")
     else:
         if(len(lista_registros)> 15 ):
             sorted(lista_registros, key = lambda Register: Register.namevideo.lower())
         else:
-            quick_sort(lista_registros)
+            lista_registros = quick_sort(lista_registros)
 
     for registro in lista_registros:
-        print "%s\n" %(registro.namevideo)
+        print ("%s\n") %(registro.namevideo)
