@@ -6,6 +6,7 @@
 import os
 from CSV_ import *
 from open_csv import *
+from write_bin_file import *
 #===============================
 #   functions
 #===============================
@@ -85,10 +86,19 @@ Registers = []
 files = []
 # Chamo a funcao do arquivo open_csv e retorna uma lista com os objetos das colunas
 a = open_csv_and_return_data("MCPD.csv")
-lista_vid = a[0] # parametro 0 da lista=> nome dos videos
-lista_links = a[1] # parametro 1 da lista=> nome dos links
+_vid = a[0] # parametro 0 da lista=> nome dos videos
+_links = a[1] # parametro 1 da lista=> nome dos links
 # processamento de arquivo 
 offset = 0
+# .values do panda é a lista com o conteudo valido dos dados
+lista_v = (_vid.values)
+lista_l = (_links.values)
+
+# create bin fara com que escreva cada arquivo com os dados necessarios
+create_bin(lista_v,"videos")
+create_bin(lista_l,"links")
+
+
 
 handler = "MCPD"
 # Criacao de um arquivo txt para visualizar o que foi acessado, uma especie de log 
