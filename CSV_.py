@@ -77,7 +77,9 @@ class NodeTrie(object):
                 self.children_r.offsets.append(offset)
                 self.children_r.rest_word                 
 ##################################
-
+# AddNodeWord => Pega palavra coloca em hash e depois em binario
+# Mais detalhes no comentarios a seguir
+####################################
 
     def AddNodeWord(self,word,offset):
         
@@ -104,7 +106,9 @@ class Register(object):
         self.offset = offset 
         self.link = info[0]
         self.namevideo = info[1]
-
+################################
+# Register.link => link do video dos registros
+# Register.namevideo => nome do videos dos registros
 ################################
     def __repr__(self):
         return "%s\t%s\t" % (str(self.namevideo)) , (str(self.link))
@@ -209,6 +213,10 @@ def list_video(word, tree, name_file):
         return videos
     else:
         return None
+##########################################################################
+# quick_sort => pega uma lista de registros e faz o ordenamento via quick
+# separa a lista em 3 => menores, iguais e maiores
+# Retorna a concatenacao das 3
 ##########################################################################
 def quick_sort(lista_registro):
     less = []

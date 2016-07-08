@@ -9,7 +9,9 @@ from open_csv import *
 #===============================
 #   functions
 #===============================
-
+# switch => selecao dos comandos existentes
+# executa funcoes a partir da selecao
+########################################
 
 def switch(menu, handler,exit):
     while menu != 99:
@@ -57,6 +59,9 @@ def video_name(name_archive, word, exit):
     f.close()
 
 #####################################################
+# verify_entry => verifica se tem um arquivo com mesmo nome
+# ou nao
+####################################################
 def verify_entry(nomedaentrada):
     try:
         entrada = open(nomedaentrada+"data_name_videos_index.bin",'wb')
@@ -71,8 +76,8 @@ def open_csv():
     handler = "MCPD"
     f = open(handler + ".csv",'r',errors='ignore', encoding ="UTF-8")
     return [f,handler] 
-   
-
+############################################################   
+# open_csv => substituida por open_csv_and_return_data
 ####################################################
 # Main
 ####################################################
@@ -86,12 +91,16 @@ lista_links = a[1] # parametro 1 da lista=> nome dos links
 offset = 0
 
 handler = "MCPD"
-
+# Criacao de um arquivo txt para visualizar o que foi acessado, uma especie de log 
 arquivo_de_saida = input("Para melhor visualizacao de dados, um arquivo txt sera criado. Digite o nome dele: ")
 arquivo_de_saida = arquivo_de_saida + ".txt"
 print(arquivo_de_saida + "criado\n")
 saida = open(arquivo_de_saida,"w")
-
+##############################
+# A seguir o menu ira mostrar as opcoes
+# Usuario seleciona uma delas
+# 1,2 ou 99=> caso contrario invalido
+##############################
 menu = 1
 while menu != 99:
     print(""".___  ___.      ___   .___________. __    __       _______. _______     ___      .______        ______  __    __  
@@ -105,5 +114,5 @@ while menu != 99:
     print ("[2] - Busca por palavra-chave\n")
     print ("[99] - Saida do programa\n")
     menu=int(input())
-    switch(menu,handler,saida)
+    switch(menu,handler,saida) # chama a funcao de selecionamento
     input()
