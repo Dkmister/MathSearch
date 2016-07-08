@@ -37,6 +37,7 @@ def switch(menu, handler,exit):
 #####################################################
 
 
+#####################################################
 def video_name(name_archive, word, exit):
     # Busca palvra consultada
     # Imprime todos videos com a palavra consultada
@@ -73,10 +74,10 @@ def verify_entry(nomedaentrada):
         print("\nArquivo novo.\nVamos processar o arquivo pela primeira vez.\nAguarde\n")
         return False
 #####################################################
-def open_csv():
-    handler = "MCPD"
-    f = open(handler + ".csv",'r',errors='ignore', encoding ="UTF-8")
-    return [f,handler] 
+def create_register(offset,video,link,registers):
+    for i in range(0,offset):
+        Element = Register(i,info=[link[i],video[i]])
+        registers.append(Element)
 ############################################################   
 # open_csv => substituida por open_csv_and_return_data
 ####################################################
@@ -89,7 +90,7 @@ a = open_csv_and_return_data("MCPD.csv")
 _vid = a[0] # parametro 0 da lista=> nome dos videos
 _links = a[1] # parametro 1 da lista=> nome dos links
 # processamento de arquivo 
-offset = 0
+offset = 698 # numero de dados do csv
 # .values do panda é a lista com o conteudo valido dos dados
 lista_v = (_vid.values)
 lista_l = (_links.values)
@@ -98,7 +99,7 @@ lista_l = (_links.values)
 create_bin(lista_v,"videos")
 create_bin(lista_l,"links")
 
-
+create_register(offset,lista_v,lista_l,Registers)
 
 handler = "MCPD"
 # Criacao de um arquivo txt para visualizar o que foi acessado, uma especie de log 
