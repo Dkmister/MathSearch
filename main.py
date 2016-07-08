@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
 #   Arquivo principal do trabalho final de CPD
 #   E: Arquivo de texto com links do youtube 
 #   S: Arquivos binario com dados e um arquivo de texto 
 
 import os
 from CSV_ import *
+from open_csv import *
 #===============================
 #   functions
 #===============================
@@ -14,14 +16,11 @@ def switch(menu, handler,exit):
         if menu == 1:
             print("Listagem de videos.\n")
             exit.write("Listagem de videos.\n")
-
-            video(handler,exit)
             break
         elif menu == 2:
             print ("Busca por palavras chaves.\n")
             exit.write("Busca por palavras chaves.\n")
-
-            videos(handler,input("Digite: "), exit)
+            #video_name(handler,input("Digite: "), exit)
             break
         else:
             print ("Valor invalido, tente novamente\n")
@@ -40,7 +39,7 @@ def video_name(name_archive, word, exit):
     # Imprime todos videos com a palavra consultada
     list_vid = []
 
-    f = open(name_archive + "data_word_index.bin",'rb')
+    f = open(name_archive + "data_name_videos_index.bin",'rb')
 
     tree = pickle.load(f)
 
@@ -69,51 +68,24 @@ def verify_entry(nomedaentrada):
         return False
 #####################################################
 def open_csv():
-    try:
-        file_name = input("Nome do arquivo:")
-        csv_file = open(file_name + ".csv",'r',errors='ignore', encoding ="UTF-8")
-        return [csv_file,file_name] 
-    except:
-        print("Arquivo inexistente.\n")
-        return open_csv()
+    handler = "MCPD"
+    f = open(handler + ".csv",'r',errors='ignore', encoding ="UTF-8")
+    return [f,handler] 
+   
 
 ####################################################
 # Main
 ####################################################
 Registers = []
 files = []
-
-k = open_csv()
-
-f = k[0]
-
-handler = k[1]
-
-del k 
+# Chamo a funcao do arquivo open_csv e retorna uma lista com os objetos das colunas
+a = open_csv_and_return_data("MCPD.csv")
+lista_vid = a[0] # parametro 0 da lista=> nome dos videos
+lista_links = a[1] # parametro 1 da lista=> nome dos links
 # processamento de arquivo 
 offset = 0
 
-if os.path.isfile(handler + 'Data.bin') == False:
-    with open(handler + 'Data.bin', "wb") as handler_data:
-        for line in csv.reader(f, dialect= 'excel',delimiter=''):
-            if line[0] == "Videotitle link_link":
-                del line 
-            else:
-                i = 1
-                for element in line[1]:
-                    i = i + 1
-                    if element =="":
-                        del line[i-1::]
-                newElement = Register(offset,line)
-                Registers.append(newElement)
-                pickle.dump(newElement, handler_data, pickle.HIGHEST_PROTOCOL)
-
-                offset = offset + 1
-    f.close()
-
-    make_index_files(Registers, handler)
-
-print("\nArquivo " + handler + " aberto e processado com sucesso\n")
+handler = "MCPD"
 
 arquivo_de_saida = input("Para melhor visualizacao de dados, um arquivo txt sera criado. Digite o nome dele: ")
 arquivo_de_saida = arquivo_de_saida + ".txt"
@@ -122,14 +94,12 @@ saida = open(arquivo_de_saida,"w")
 
 menu = 1
 while menu != 99:
-    print("""_____ ______ ________ _________ ___ ___ ________ _______ ________ ________ ________ ___ ___
-|\ _ \ _ \|\ __ \|\___ ___\\ \|\ \ |\ ____\|\ ___ \ |\ __ \|\ __ \|\ ____\|\ \|\ \
-\ \ \\\__\ \ \ \ \|\ \|___ \ \_\ \ \\\ \ \ \ \___|\ \ __/|\ \ \|\ \ \ \|\ \ \ \___|\ \ \\\ \
-\ \ \\|__| \ \ \ __ \ \ \ \ \ \ __ \ \ \_____ \ \ \_|/_\ \ __ \ \ _ _\ \ \ \ \ __ \
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \|____|\ \ \ \_|\ \ \ \ \ \ \ \\ \\ \ \____\ \ \ \ \
-\ \__\ \ \__\ \__\ \__\ \ \__\ \ \__\ \__\ ____\_\ \ \_______\ \__\ \__\ \__\\ _\\ \_______\ \__\ \__\
-\|__| \|__|\|__|\|__| \|__| \|__|\|__| |\_________\|_______|\|__|\|__|\|__|\|__|\|_______|\|__|\|__|
-\|______|""")
+    print(""".___  ___.      ___   .___________. __    __       _______. _______     ___      .______        ______  __    __  
+|   \/   |     /   \  |           ||  |  |  |     /       ||   ____|   /   \     |   _  \      /      ||  |  |  | 
+|  \  /  |    /  ^  \ `---|  |----`|  |__|  |    |   (----`|  |__     /  ^  \    |  |_)  |    |  ,----'|  |__|  | 
+|  |\/|  |   /  /_\  \    |  |     |   __   |     \   \    |   __|   /  /_\  \   |      /     |  |     |   __   | 
+|  |  |  |  /  _____  \   |  |     |  |  |  | .----)   |   |  |____ /  _____  \  |  |\  \----.|  `----.|  |  |  | 
+|__|  |__| /__/     \__\  |__|     |__|  |__| |_______/    |_______/__/     \__\ | _| `._____| \______||__|  |__| """)
     print ("Bem-vindo ao MATH_SEARCH\n")
     print ("[1] - Listagem de todos videos\n")
     print ("[2] - Busca por palavra-chave\n")
