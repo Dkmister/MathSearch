@@ -14,11 +14,12 @@ from write_bin_file import *
 # executa funcoes a partir da selecao
 ########################################
 
-def switch(menu, handler,exit):
+def switch(menu, handler,exit,registros):
     while menu != 99:
         if menu == 1:
             print("Listagem de videos.\n")
             exit.write("Listagem de videos.\n")
+            listar_videos(registros)
             break
         elif menu == 2:
             print ("Busca por palavras chaves.\n")
@@ -128,5 +129,5 @@ while menu != 99:
     print ("[2] - Busca por palavra-chave\n")
     print ("[99] - Saida do programa\n")
     menu=int(input())
-    switch(menu,handler,saida) # chama a funcao de selecionamento
+    switch(menu,handler,saida,Registers) # chama a funcao de selecionamento
     input()
