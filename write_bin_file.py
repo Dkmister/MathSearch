@@ -1,4 +1,4 @@
-#   create_bin(c,n) = > c é a coluna, ou seja, conteudo que sera escrito, n é o nome do arquivo
+#   create_bin(c,n) = > c eh a coluna, ou seja, conteudo que sera escrito, n eh o nome do arquivo
 #   abre arquivo, concatena com o nome sugerido
 #   escreve conteudo e o fecha
 def create_bin(conteudo,name):

@@ -95,7 +95,7 @@ _vid = a[0] # parametro 0 da lista=> nome dos videos
 _links = a[1] # parametro 1 da lista=> nome dos links
 # processamento de arquivo 
 offset = 698 # numero de dados do csv
-# .values do panda é a lista com o conteudo valido dos dados
+# .values do panda eh a lista com o conteudo valido dos dados
 lista_v = (_vid.values)
 lista_l = (_links.values)
 
