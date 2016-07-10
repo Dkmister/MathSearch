@@ -19,7 +19,7 @@ def switch(menu, handler,exit,registros):
         if menu == 1:
             print("Listagem de videos.\n")
             exit.write("Listagem de videos.\n")
-            listar_videos(registros)
+            listar_videos(registros, exit)
             break
         elif menu == 2:
             print ("Busca por palavras chaves.\n")
@@ -36,7 +36,7 @@ def switch(menu, handler,exit,registros):
         
     return 0
 #####################################################
-def listar_videos(Registros):
+def listar_videos(Registros, exit):
     for i in Registros:
         r = i.__repr__()
         exit.write(r + "\n\n")

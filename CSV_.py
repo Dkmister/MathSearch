@@ -111,7 +111,7 @@ class Register(object):
 # Register.namevideo => nome do videos dos registros
 ################################
     def __repr__(self):
-        return "%s\t%s\t" % (str(self.namevideo)) , (str(self.link))
+        return (str(self.namevideo)) + "\t" + (str(self.link))
 ################################
 # Funcoes auxiliares
 ################################
