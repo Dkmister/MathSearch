@@ -2,7 +2,7 @@
 #   Arquivo principal do trabalho final de CPD
 #   E: Arquivo de texto com links do youtube 
 #   S: Arquivos binario com dados e um arquivo de texto 
-
+import string
 import os
 from CSV_ import *
 from open_csv import *
@@ -24,7 +24,8 @@ def switch(menu, handler,exit,registros):
         elif menu == 2:
             print ("Busca por palavras chaves.\n")
             exit.write("Busca por palavras chaves.\n")
-            #video_name(handler,input("Digite: "), exit)
+            #search = buscar_em_arq(exit,input("Digite: "))
+            #listar_videos_sel(registros,exit,search)
             break
         else:
             print ("Valor invalido, tente novamente\n")
@@ -35,6 +36,32 @@ def switch(menu, handler,exit,registros):
         exit.close()
         
     return 0
+#####################################################
+# buscar_em_arq(exit,substring):
+# Dada uma palavra, substring de um video, retorna uma lista com em quais linhas ela aparece
+#####################################################
+def buscar_em_arq(exit,substring):
+    i = 0
+    lst_i=[]
+    with open("videoscsv_b.bin",'r') as f:
+        for line in f:
+            if substring in line:
+                print (line)
+                lst_i.append(i) 
+            i += 1
+    return lst_i
+#######################################################
+# listar_videos_sel(registros,exit,lst):
+# Dada a lista com os linhas nas quais tal palavra aparece
+# Se for o valor correspondente na lista de registros 
+# Escrever no arquivo, os videos e links correspondentes
+#######################################################
+def listar_videos_sel(Registros,exit,lst):
+    for i in Registros:
+        if i == lst[i]:
+            r = i.__repr__()
+            exit.write(r + "\n\n")
+
 #####################################################
 def listar_videos(Registros, exit):
     for i in Registros:
@@ -109,7 +136,7 @@ handler = "MCPD"
 # Criacao de um arquivo txt para visualizar o que foi acessado, uma especie de log 
 arquivo_de_saida = input("Para melhor visualizacao de dados, um arquivo txt sera criado. Digite o nome dele: ")
 arquivo_de_saida = arquivo_de_saida + ".txt"
-print(arquivo_de_saida + "criado\n")
+print(arquivo_de_saida + " criado\n")
 saida = open(arquivo_de_saida,"w")
 ##############################
 # A seguir o menu ira mostrar as opcoes
