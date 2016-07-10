@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-#   Arquivo principal do trabalho final de CPD
-#   E: Arquivo de texto com links do youtube 
-#   S: Arquivos binario com dados e um arquivo de texto 
+#   Arquivo principal do trabalho final de CPD 
+#   S: Arquivo de texto com as buscas 
 import string
 import os
 from CSV_ import *
@@ -17,15 +16,15 @@ from write_bin_file import *
 def switch(menu, handler,exit,registros):
     while menu != 99:
         if menu == 1:
-            print("Listagem de videos.\n")
-            exit.write("Listagem de videos.\n")
+            print("[1] - Listagem de videos.\n")
+            exit.write("[1] - Listagem de videos.\n")
             listar_videos(registros, exit)
             break
         elif menu == 2:
-            print ("Busca por palavras chaves.\n")
-            exit.write("Busca por palavras chaves.\n")
-            #search = buscar_em_arq(exit,input("Digite: "))
-            #listar_videos_sel(registros,exit,search)
+            print ("[2] - Busca por palavras chaves.\n")
+            exit.write("[2] - Busca por palavras chaves.\n")
+            search = buscar_em_arq(exit,input("Digite: "))
+            listar_videos_sel(registros,exit,search)
             break
         else:
             print ("Valor invalido, tente novamente\n")
@@ -57,10 +56,9 @@ def buscar_em_arq(exit,substring):
 # Escrever no arquivo, os videos e links correspondentes
 #######################################################
 def listar_videos_sel(Registros,exit,lst):
-    for i in Registros:
-        if i == lst[i]:
-            r = i.__repr__()
-            exit.write(r + "\n\n")
+    for elem in lst:
+        r = Registros[elem].__repr__()
+        exit.write(r + "\n\n")
 
 #####################################################
 def listar_videos(Registros, exit):
@@ -131,6 +129,7 @@ create_bin(lista_v,"videos")
 create_bin(lista_l,"links")
 
 create_register(offset,lista_v,lista_l,Registers)
+
 
 handler = "MCPD"
 # Criacao de um arquivo txt para visualizar o que foi acessado, uma especie de log 
